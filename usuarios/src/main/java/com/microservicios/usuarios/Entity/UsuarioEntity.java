@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Component
 @Data
 @NoArgsConstructor
-public class Usuario {
-    private String id;
+public class UsuarioEntity {
+    private int id;
     private String nombre;
     private String email;
 }

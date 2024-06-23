@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @Component
 @Data
 @NoArgsConstructor
-public class UsuarioDTO {
-    private int id;
+public class UsuarioSinIdDTO {
     private String nombre;
     //Agregar la validacion de javax
     private String email;
