@@ -1,17 +1,15 @@
 package com.microservicios.usuarios.dto;
 
-import java.io.Serializable;
-
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @Data
 @NoArgsConstructor
-public class UsuarioSinIdDTO {
+public class UsuarioCreateInDTO {
+
     private String nombre;
-    //Agregar la validacion de javax
     private String email;
+    private String password;
 }

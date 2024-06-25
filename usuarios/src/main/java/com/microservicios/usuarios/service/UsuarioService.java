@@ -1,39 +1,23 @@
 package com.microservicios.usuarios.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.microservicios.usuarios.modelo.UsuarioModel;
 import org.springframework.stereotype.Service;
 
-import com.microservicios.usuarios.dto.UsuarioDTO;
-import com.microservicios.usuarios.dto.UsuarioSinIdDTO;
-import com.microservicios.usuarios.mappers.UsuarioMapper;
-import com.microservicios.usuarios.repository.UsuarioRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public interface UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    public UsuarioModel crearUsuario(UsuarioModel modelo);
 
-    public UsuarioDTO getUsuarioById(int idUsuario) {
+    public UsuarioModel obtenerUsuarioById(Long idUsuario);
 
-        var userDTO = usuarioRepository.getUsuarioById(idUsuario);
+    public UsuarioModel obtenerUsuarioByEmail(String email);
 
-        return UsuarioMapper.entity2dto(userDTO);
-    }
+    public UsuarioModel eliminarUsuarioById(Long idUsuario);
 
-    public UsuarioDTO createUsuario(UsuarioSinIdDTO usuarioDTO){
-        return UsuarioMapper.entity2dto(usuarioRepository.crearUsuario(UsuarioMapper.dto2Entity(usuarioDTO)));
-    }
+    public UsuarioModel modificarUsuario(Long id, UsuarioModel model);
 
-    public Map<String, Object> deleteUsuarioById(int usuarioId) {
-        boolean eliminado = usuarioRepository.eliminarUsuario(usuarioId);
-
-        Map<String, Object> response = new HashMap<>();;
-        response.put("Estado", "Usuario Eliminado.");
-
-        return response;
-    }
+    public List<UsuarioModel> obtenerUsuarios();
 }

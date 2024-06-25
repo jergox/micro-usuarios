@@ -1,40 +1,32 @@
 package com.microservicios.usuarios.mappers;
 
+import com.microservicios.usuarios.Entity.UsuarioEntity;
+import com.microservicios.usuarios.dto.UsuarioCreateInDTO;
+import com.microservicios.usuarios.modelo.UsuarioModel;
+import com.microservicios.usuarios.dto.UsuarioDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-import com.microservicios.usuarios.Entity.UsuarioEntity;
-import com.microservicios.usuarios.dto.UsuarioDTO;
-import com.microservicios.usuarios.dto.UsuarioSinIdDTO;
+import java.util.List;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+@Mapper(componentModel = "spring")
 @Component
-public class UsuarioMapper {
-    private int id;
-    private String nombre;
-    private String email;
+public interface UsuarioMapper {
 
-    public static UsuarioEntity dto2Entity(UsuarioDTO dto){
-        UsuarioEntity entity = new UsuarioEntity();
-        entity.setId(dto.getId());
-        entity.setEmail(dto.getEmail());
-        entity.setNombre(dto.getNombre());
-        return entity;
-    }
+    UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
 
-    public static UsuarioDTO entity2dto(UsuarioEntity entity){
-        UsuarioDTO dto = new UsuarioDTO();
-        dto.setId(entity.getId());
-        dto.setEmail(entity.getEmail());
-        dto.setNombre(entity.getNombre());
-        return dto;
-    }
+    UsuarioDTO toDTO(UsuarioModel model);
+    UsuarioEntity toEntity(UsuarioModel model);
+    UsuarioCreateInDTO toCreateDTO(UsuarioModel model);
 
-    public static UsuarioEntity dto2Entity(UsuarioSinIdDTO dto){
-        UsuarioEntity entity = new UsuarioEntity();
-        entity.setEmail(dto.getEmail());
-        entity.setNombre(dto.getNombre());
-        return entity;
-    }
+    UsuarioModel toModel(UsuarioDTO dto);
+    UsuarioModel toModel(UsuarioEntity entity);
+    UsuarioModel toModel(UsuarioCreateInDTO createDto);
+
+    List<UsuarioDTO> toDtoList(List<UsuarioModel> models);
+    List<UsuarioEntity> toEntityList(List<UsuarioModel> models);
+
+    List<UsuarioModel> entityListToModelList(List<UsuarioEntity> entities);
+    List<UsuarioModel> dtoListToModelList(List<UsuarioDTO> dtos);
 }

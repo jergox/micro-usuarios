@@ -1,20 +1,18 @@
-package com.microservicios.usuarios.dto;
-
-import java.io.Serializable;
+package com.microservicios.usuarios.modelo;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Component
-public class UsuarioDTO {
+public class UsuarioModel {
 
     private Long id;
     private String nombre;
     private String email;
+    private String password;
+
 }
