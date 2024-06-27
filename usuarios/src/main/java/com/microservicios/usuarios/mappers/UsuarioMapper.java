@@ -2,6 +2,7 @@ package com.microservicios.usuarios.mappers;
 
 import com.microservicios.usuarios.Entity.UsuarioEntity;
 import com.microservicios.usuarios.dto.UsuarioCreateInDTO;
+import com.microservicios.usuarios.dto.UsuarioModificarInDTO;
 import com.microservicios.usuarios.modelo.UsuarioModel;
 import com.microservicios.usuarios.dto.UsuarioDTO;
 import org.mapstruct.Mapper;
@@ -19,10 +20,12 @@ public interface UsuarioMapper {
     UsuarioDTO toDTO(UsuarioModel model);
     UsuarioEntity toEntity(UsuarioModel model);
     UsuarioCreateInDTO toCreateDTO(UsuarioModel model);
+    UsuarioModificarInDTO toModificarDTO(UsuarioModel model);
 
     UsuarioModel toModel(UsuarioDTO dto);
     UsuarioModel toModel(UsuarioEntity entity);
     UsuarioModel toModel(UsuarioCreateInDTO createDto);
+    UsuarioModel toModel(UsuarioModificarInDTO modificarDto);
 
     List<UsuarioDTO> toDtoList(List<UsuarioModel> models);
     List<UsuarioEntity> toEntityList(List<UsuarioModel> models);

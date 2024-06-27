@@ -1,9 +1,11 @@
 package com.microservicios.usuarios.controller;
 
 import com.microservicios.usuarios.dto.UsuarioCreateInDTO;
+import com.microservicios.usuarios.dto.UsuarioModificarInDTO;
 import com.microservicios.usuarios.mappers.UsuarioMapper;
 import com.microservicios.usuarios.modelo.UsuarioModel;
 import com.microservicios.usuarios.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import com.microservicios.usuarios.dto.UsuarioDTO;
@@ -15,6 +17,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 
 
 @RestController
@@ -45,8 +48,8 @@ public class UsuarioControllerImpl {
     }
 
     @PostMapping()
-    public ResponseEntity createUsuario(@RequestBody UsuarioCreateInDTO request) {
-        
+    public ResponseEntity createUsuario(@Valid @RequestBody UsuarioCreateInDTO request) {
+
         UsuarioModel usuario = usuarioService.crearUsuario(UsuarioMapper.INSTANCE.toModel(request));
 
         UsuarioDTO dto = UsuarioMapper.INSTANCE.toDTO(usuario);
@@ -82,7 +85,7 @@ public class UsuarioControllerImpl {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity createUsuario(@PathVariable("id") Long id, @RequestBody UsuarioCreateInDTO request) {
+    public ResponseEntity modificarUsuario(@PathVariable("id") Long id, @RequestBody UsuarioModificarInDTO request) {
 
         UsuarioModel usuario = usuarioService.modificarUsuario(id, UsuarioMapper.INSTANCE.toModel(request));
 

@@ -1,9 +1,9 @@
 package com.microservicios.usuarios.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.microservicios.usuarios.ValueObject.Rol;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
@@ -21,4 +21,6 @@ public class UsuarioEntity {
     private String nombre;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)//para que se guarde como String
+    private Rol rol;
 }

@@ -2,6 +2,7 @@ package com.microservicios.usuarios.service.impl;
 
 import com.microservicios.usuarios.Entity.UsuarioEntity;
 import com.microservicios.usuarios.Excepction.UsuarioNotFoundException;
+import com.microservicios.usuarios.ValueObject.Rol;
 import com.microservicios.usuarios.mappers.UsuarioMapper;
 import com.microservicios.usuarios.modelo.UsuarioModel;
 import com.microservicios.usuarios.repository.UsuarioRepository;
@@ -27,7 +28,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (optional.isPresent()){
             throw new RuntimeException("Ya existe el usuario con email: " + modelo.getEmail());
         } else {
-            UsuarioEntity entity = usuarioRepository.save(UsuarioMapper.INSTANCE.toEntity(modelo));
+            UsuarioEntity preEntity = UsuarioMapper.INSTANCE.toEntity(modelo);
+            //Le damos un valor por defecto
+            //preEntity.setRol(Rol.Normal);
+
+            UsuarioEntity entity = usuarioRepository.save(preEntity);
             UsuarioModel model = UsuarioMapper.INSTANCE.toModel(entity);
             return model;
         }
@@ -84,6 +89,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         if (model.getPassword() != null){
             actual.setPassword(model.getPassword());
+        }
+        if (model.getRol() != null){
+            actual.setRol(model.getRol());
         }
 
         UsuarioEntity modificado = usuarioRepository.save(actual);
