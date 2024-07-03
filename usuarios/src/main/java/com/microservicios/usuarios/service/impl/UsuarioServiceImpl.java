@@ -2,7 +2,6 @@ package com.microservicios.usuarios.service.impl;
 
 import com.microservicios.usuarios.Entity.UsuarioEntity;
 import com.microservicios.usuarios.Excepction.UsuarioNotFoundException;
-import com.microservicios.usuarios.ValueObject.Rol;
 import com.microservicios.usuarios.mappers.UsuarioMapper;
 import com.microservicios.usuarios.modelo.UsuarioModel;
 import com.microservicios.usuarios.repository.UsuarioRepository;

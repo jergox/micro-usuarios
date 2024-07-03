@@ -3,6 +3,7 @@ package com.microservicios.usuarios.Entity;
 import com.microservicios.usuarios.ValueObject.Rol;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,8 @@ public class UsuarioEntity {
     private Long id;
     private String nombre;
     private String email;
+    @NotNull
+    @NotBlank
     private String password;
     @Enumerated(EnumType.STRING)//para que se guarde como String
     private Rol rol;

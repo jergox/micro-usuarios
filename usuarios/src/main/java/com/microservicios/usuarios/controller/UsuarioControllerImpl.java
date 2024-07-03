@@ -27,17 +27,17 @@ public class UsuarioControllerImpl {
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("{id}")
+    @GetMapping("/ById/{id}")
     public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable("id") Long id) {
-        
+
         UsuarioModel model = usuarioService.obtenerUsuarioById(id);
-        
+
         ResponseEntity response = new ResponseEntity<>(UsuarioMapper.INSTANCE.toDTO(model), HttpStatus.OK);
 
         return response;
     }
 
-    @GetMapping("{email}")
+    @GetMapping("/ByEmail/{email}")
     public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable("email") String email) {
 
         UsuarioModel model = usuarioService.obtenerUsuarioByEmail(email);
